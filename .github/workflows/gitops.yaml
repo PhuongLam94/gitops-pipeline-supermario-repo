@@ -14,7 +14,6 @@ jobs:
       - run: echo "${{ github.event.repository.name }}"
       - name: Checkout Repository
         uses: actions/checkout@v4
-        token: 
         with:
           repository: PhuongLam94/gitops-pipeline-supermario-repo
           fetch-depth: 0

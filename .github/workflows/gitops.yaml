@@ -18,8 +18,8 @@ jobs:
           repository: PhuongLam94/gitops-pipeline-supermario-repo
           fetch-depth: 0
 
-      - name: SonarQube Scan
-        uses: sonarqube/sonarqube-scan-action@master
-        env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # - name: SonarQube Scan
+      #   uses: sonarqube/sonarqube-scan-action@master
+      #   env:
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

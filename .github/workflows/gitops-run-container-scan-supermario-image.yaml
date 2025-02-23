@@ -28,6 +28,6 @@ jobs:
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:
-          input: ${{ env.GITHUB_WORKSPACE }}/supermariogamelatestdockerimage.tar
+          input: ${{ GITHUB_WORKSPACE }}/supermariogamelatestdockerimage.tar
           exit-code: '1'
           severity: 'CRITICAL,HIGH'

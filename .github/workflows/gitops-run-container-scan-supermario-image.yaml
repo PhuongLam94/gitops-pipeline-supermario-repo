@@ -23,8 +23,6 @@ jobs:
         run: |
           docker pull docker.io/phuonglam/supermariogitopsproject:${{ env.VERSION }}
           docker save -o supermariogamelatestdockerimage.tar docker.io/phuonglam/supermariogitopsproject:${{ env.VERSION }}
-          echo "$(pwd)"
-          ls
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:

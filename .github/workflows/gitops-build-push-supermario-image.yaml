@@ -1,11 +1,12 @@
 
-name: "Build and push SuperMario Game image with static tag to Docker Hub"
+name: "Build and push SuperMario Game image with dynamic tag to Docker Hub"
 
 on:
   push:
     branches:
       - main
-
+env:
+  VERSION: $(( $(cat version.txt) + 1 ))
 jobs:
   build_push_supermario_docker_image:
     runs-on: ubuntu-latest
@@ -17,6 +18,6 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
       - name: Build and push Docker image
         run: |
-          docker build -t docker.io/phuonglam/supermariogitopsproject:1 .
-          docker push docker.io/phuonglam/supermariogitopsproject:1
+          docker build -t docker.io/phuonglam/supermariogitopsproject:${{ env.VERSION }} .
+          docker push docker.io/phuonglam/supermariogitopsproject:${{ env.VERSION }}
       

@@ -7,7 +7,7 @@ on:
  
 env:
   VERSION: $(( $(cat version.txt) + 1 ))
-  
+  TAR_FILENAME: supermariolatestdockerimage.tar
 
 jobs:
  
@@ -63,7 +63,7 @@ jobs:
       - name: Get Docker Image from Docker Hub
         run: |
           docker pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/supermariogitopsproject:${{ env.VERSION }}
-          docker save -o supermariolatestdockerimage.tar docker.io/${{ secrets.DOCKERHUB_USERNAME }}/supermariogitopsproject:${{ env.VERSION }}
+          docker save -o ${{ env.TAR_FILENAME }} docker.io/${{ secrets.DOCKERHUB_USERNAME }}/supermariogitopsproject:${{ env.VERSION }}
           echo 'List file'
           ls
           echo 'Current directory'
@@ -71,7 +71,7 @@ jobs:
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:
-          input: ${{ github.workspace }}/supermariogamelatestdockerimage.tar
+          input: ${{ github.workspace }}/${{ env.TAR_FILENAME }}
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
           
